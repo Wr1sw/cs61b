@@ -41,8 +41,6 @@ public class NBody {
         Double dt = Double.valueOf(args[1]);
         String fileName = args[2];
         double radius = readRadius(fileName);
-        System.out.println("radius = " + radius);
-        System.out.println("radius = " + radius);
         Planet[] planets = readPlanets(fileName);
         StdDraw.setScale(-radius, radius);
         StdDraw.clear();
@@ -71,9 +69,7 @@ public class NBody {
             StdDraw.pause(10);
             i++;
             now+=dt;
-            StdOut.printf("123");
         }
-        System.out.println("-----");
         StdOut.printf("%d\n", planets.length);
         StdOut.printf("%.2e\n", radius);
         for (int g = 0; g < planets.length; g++) {
