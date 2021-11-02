@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NBody {
-    public static String BACKGROUND = "advice.png";
+    private static String BACKGROUND = "advice.png";
     /** Given a file name as a String, it should return a double corresponding to the radius of the universe in that file **/
     public static double readRadius(String fileName) {
         In in = new In(fileName);
