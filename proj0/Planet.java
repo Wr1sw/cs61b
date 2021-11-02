@@ -2,7 +2,7 @@ import java.lang.Math.*;
 import java.math.BigDecimal;
 
 public class Planet {
-    public static final double G = 6.67e-11;
+    private static final double G = 6.67e-11;
     /**
      * its current x position
      **/
@@ -31,10 +31,8 @@ public class Planet {
     /**
      * the name of the file that corresponds to the image that depicts the body
      **/
-    String imgFileName;
+    public String imgFileName;
 
-    public Planet() {
-    }
 
     public Planet(double xP, double yP, double xV, double yV, double m, String img) {
         this.xxPos = xP;
@@ -122,15 +120,4 @@ public class Planet {
         StdDraw.picture(xxPos, yyPos, "images/"+imgFileName);
     }
 
-    @Override
-    public String toString() {
-        return "Planet{" +
-                "xxPos=" + xxPos +
-                ", yyPos=" + yyPos +
-                ", xxVel=" + xxVel +
-                ", yyVel=" + yyVel +
-                ", mass=" + mass +
-                ", imgFileName='" + imgFileName + '\'' +
-                '}';
-    }
 }
