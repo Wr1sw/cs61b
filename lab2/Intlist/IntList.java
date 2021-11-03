@@ -4,18 +4,18 @@ import java.util.Formatter;
  * A naked recursive list of integers, similar to what we saw in lecture 3, but
  * with a large number of additional methods.
  *
- * @author P. N. Hilfinger, with some modifications by Josh Hug and melaniecebula
+ * @author P. N. Hilfinger,with some modifications by Josh Hug and melaniecebula
  *         [Do not modify this file.]
  */
 public class IntList {
     /**
      * First element of list.
      */
-    public int first;
+    private int first;
     /**
      * Remaining elements of list.
      */
-    public IntList rest;
+    private IntList rest;
 
     /**
      * A List with first FIRST0 and rest REST0.
@@ -81,19 +81,20 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        if (A == null && B != null) return B;
-        if (A != null && B == null) return A;
-        if (A == null && B == null) return null;
+        if (A == null && B != null) {
+            return B;
+        }
+        if (A != null && B == null) {
+            return A;
+        }
+        if (A == null && B == null) {
+            return null;
+        }
         IntList res = A;
-        while(A.rest!=null) {
+        while (A.rest != null) {
             A = A.rest;
         }
-        while(B.rest!=null) {
-            A.rest = new IntList(B.first,null);
-            A = A.rest;
-            B = B.rest;
-        }
-        A.rest = new IntList(B.first,null);
+        A.rest = B;
         return res;
     }
 
@@ -102,29 +103,32 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        if (A == null && B != null) return B;
-        if (A != null && B == null) return A;
-        if (A == null && B == null) return null;
+        if (A == null && B != null) {
+            return B;
+        }
+        if (A != null && B == null) {
+            return A;
+        }
+        if (A == null && B == null) {
+            return null;
+        }
         IntList res = new IntList();
-        IntList temp = new IntList();
-        temp = res;
-        while(A.rest!=null) {
-            res.rest = new IntList(A.first,null);
+        IntList temp = res;
+        while (A.rest != null) {
+            res.rest = new IntList(A.first, null);
             res = res.rest;
             A = A.rest;
         }
-        res.rest = new IntList(A.first,null);
+        res.rest = new IntList(A.first, null);
         res = res.rest;
-        while (B.rest!=null) {
-            res.rest = new IntList(B.first,null);
+        while (B.rest != null) {
+            res.rest = new IntList(B.first, null);
             res = res.rest;
             B = B.rest;
         }
-        res.rest = new IntList(B.first,null);
+        res.rest = new IntList(B.first, null);
         return temp.rest;
     }
-
-
 
 
     /**
@@ -194,6 +198,11 @@ public class IntList {
      * doesn't get stuck in an infinite loop.
      */
 
+    /**
+     *
+     * @param A
+     * @return
+     */
     private int detectCycles(IntList A) {
         IntList tortoise = A;
         IntList hare = A;
