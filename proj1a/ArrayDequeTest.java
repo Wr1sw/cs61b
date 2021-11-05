@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /** Performs some basic linked list tests. */
 public class ArrayDequeTest {
 
@@ -80,11 +82,25 @@ public class ArrayDequeTest {
         printTestStatus(passed);
     }
 
+    public static void addGetTest() {
+        System.out.println("Running add/get test.");
+        ArrayDeque<Integer> lld1 = new ArrayDeque<>();
+
+        boolean passed = checkEmpty(true, lld1.isEmpty());
+
+        for (int i = 0; i < 5; i++) {
+            lld1.addLast(i);
+        }
+        for (int i = 0; i < 5; i++) {
+            System.out.println("lld1.get(i) = " + lld1.get(i));
+        }
+
+    }
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
         addIsEmptySizeTest();
         addRemoveTest();
-
+        addGetTest();
 //        LinkedListDeque<String> s1 = new LinkedListDeque<>();
 //        s1.addLast("first");
 //        s1.addLast("second");

@@ -1,4 +1,3 @@
-
 /**
  *  Deque implemented by array.
  **/
@@ -19,7 +18,7 @@ public class ArrayDeque<T> {
 
     /** Returns true if deque is empty, false otherwise. **/
     public boolean isEmpty() {
-        return nextFirst + 1 == nextLast;
+        return ((nextFirst + 1 + capacity) % capacity) == nextLast;
     }
 
 
