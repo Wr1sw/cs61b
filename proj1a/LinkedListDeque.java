@@ -106,7 +106,7 @@ public class LinkedListDeque<T> {
     }
 
     public T getRecursive(int index) {
-        if(size < index) {
+        if(size <= index) {
             return null;
         }
         return getRecursive(sentinel, index);
@@ -114,8 +114,10 @@ public class LinkedListDeque<T> {
 
     private T getRecursive(LinkedListDeque<T>.StuffNode node, int i) {
         if (i == 0) {
-            return node.item;
+            return node.next.item;
         }
         return getRecursive(node.next, i-1);
     }
+
+
 }

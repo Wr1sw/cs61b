@@ -90,9 +90,12 @@ public class LinkedListDequeTest {
 		s1.addLast("second");
 		s1.addLast("third");
 		s1.addLast("forth");
-
-		System.out.println("s1.get(2) = " + s1.get(2));
-
+		s1.printDeque();
+		System.out.println("s1.getRecursive(0) = " + s1.getRecursive(0));
+		System.out.println("s1.getRecursive(0) = " + s1.getRecursive(1));
+		System.out.println("s1.getRecursive(0) = " + s1.getRecursive(2));
+		System.out.println("s1.getRecursive(0) = " + s1.getRecursive(3));
+		System.out.println("s1.getRecursive(0) = " + s1.getRecursive(4));
 		s1.printDeque();
 
 
