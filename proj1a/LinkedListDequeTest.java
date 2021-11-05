@@ -85,7 +85,8 @@ public class LinkedListDequeTest {
 		addIsEmptySizeTest();
 		addRemoveTest();
 
-		LinkedListDeque<String> s1 = new LinkedListDeque<>("first");
+		LinkedListDeque<String> s1 = new LinkedListDeque<>();
+		s1.addLast("first");
 		s1.addLast("second");
 		s1.addLast("third");
 		s1.addLast("forth");
