@@ -18,6 +18,7 @@ public class ArrayDeque<T> {
 
     /** Returns true if deque is empty, false otherwise. **/
     public boolean isEmpty() {
+//        ((nextFirst + 1 + capacity) % capacity) == nextLast         why am i wrong to do this?
         return size == 0;
     }
 
@@ -53,7 +54,7 @@ public class ArrayDeque<T> {
         }
         int k = (nextFirst + 1 + capacity) % capacity;
         T res = items[k];
-        items[k] = null;
+
 
         nextFirst = (nextFirst + 1 + capacity) % capacity;
         size = size - 1;
@@ -70,7 +71,7 @@ public class ArrayDeque<T> {
         }
         int k = (nextLast - 1 + capacity) % capacity;
         T res = items[k];
-        items[k] = null;
+
         nextLast = (nextLast - 1 + capacity) % capacity;
         size = size - 1;
         if (isLowUseageRate()) {
