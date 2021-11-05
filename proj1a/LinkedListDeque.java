@@ -10,41 +10,40 @@ public class LinkedListDeque<T> {
         public StuffNode pre;
         public StuffNode next;
 
-        public StuffNode(T i, StuffNode n) {
+        public StuffNode(T i, StuffNode n, StuffNode p) {
             item = i;
             next = n;
+            pre = p;
         }
     }
 
     public LinkedListDeque() {
-        sentinel = new StuffNode((T) new Object(), null);
-        sentinel.pre = null;
+        sentinel = new StuffNode((T) new Object(), null, null);
         last = sentinel;
         size = 0;
     }
     public LinkedListDeque(T item) {
-        sentinel = new StuffNode((T) new Object(), null);
-        sentinel.next = new StuffNode(item, null);
-        sentinel.next.pre = sentinel;
+        sentinel = new StuffNode((T) new Object(), null, null);
+        sentinel.next = new StuffNode(item, null, sentinel);
+        sentinel.pre = sentinel.next;
         last = sentinel.next;
         size = size + 1;
     }
 
     public void addFirst(T item) {
         if (isEmpty()) {
-            sentinel.next = new StuffNode(item, sentinel.next);
-            sentinel.next.pre = sentinel;
+            sentinel.next = new StuffNode(item, sentinel.next, sentinel);
+            sentinel.next.pre = sentinel.next;
             size = size + 1;
             last = sentinel.next;
         }else {
-            sentinel.next = new StuffNode(item, sentinel.next);
-            sentinel.next.pre = sentinel;
+            sentinel.next = new StuffNode(item, sentinel.next, sentinel);
             size = size + 1;
         }
     }
 
     public void addLast(T item) {
-        last.next = new StuffNode(item, null);
+        last.next = new StuffNode(item, null, sentinel);
         last = last.next;
         size = size + 1;
     }
@@ -63,27 +62,33 @@ public class LinkedListDeque<T> {
 
     public void printDeque() {
         StuffNode temp = sentinel;
-        while (temp.next != null) {
-            System.out.println(temp.next.item);
+        while (temp.next.next != null) {
+            System.out.println(temp.next.item+" ");
             temp = temp.next;
         }
+        System.out.println(temp.next.item);
     }
 
     public T removeFirst() {
-        T res = null;
-        if (size > 0) {
-            res = sentinel.next.item;
-            sentinel.next = sentinel.next.next;
+        if (isEmpty()) {
+            return null;
         }
+        T res = sentinel.next.item;
+        sentinel.next = sentinel.next.next;
+        sentinel.next.pre = sentinel;
+        size = size -1;
         return res;
     }
 
     public T removeLast() {
-        T res = null;
-        if (size > 0) {
-            res = last.item;
-            last = last.pre;
+        if (isEmpty()) {
+            return null;
         }
+        T res = last.item;
+        last = last.pre;
+        last.next = null;
+        last.pre = sentinel;
+        size = size -1;
         return res;
     }
 
@@ -100,7 +105,7 @@ public class LinkedListDeque<T> {
     }
 
     public LinkedListDeque(LinkedListDeque other) {
-        sentinel = new StuffNode((T) new Object(), null);
+        sentinel = new StuffNode((T) new Object(), null, null);
         sentinel.pre = sentinel;
         sentinel.next = sentinel;
         size = 0;

@@ -28,7 +28,7 @@ public class ArrayDeque<T> {
     /**  Adds an item of type T to the front of the deque. **/
     public void addFirst (T item) {
         if (isFull()) {
-            resize((int) (capacity * 1.2));
+            resize((int) (capacity * 1.5));
         }
         items[nextFirst] = item;
         nextFirst = (nextFirst-1+capacity)%capacity;
@@ -38,7 +38,7 @@ public class ArrayDeque<T> {
     /** Adds an item of type T to the back of the deque. **/
     public void addLast (T item) {
         if (isFull()) {
-            resize((int) (capacity * 1.2));
+            resize((int) (capacity * 1.5));
         }
         items[nextLast] = item;
         nextLast = (nextLast + 1 + capacity) % capacity;
