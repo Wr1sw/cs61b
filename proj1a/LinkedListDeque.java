@@ -1,3 +1,9 @@
+/**
+ * Deque (usually pronounced like “deck”) is an irregular
+ * acronym of double-ended queue.
+ * @author wr1sw
+ * @param <T>
+ */
 public class LinkedListDeque<T> {
 
     private StuffNode sentinel;
@@ -5,11 +11,11 @@ public class LinkedListDeque<T> {
 
 
     public class StuffNode {
-        public T item;
-        public StuffNode pre;
-        public StuffNode next;
+        private T item;
+        private StuffNode pre;
+        private StuffNode next;
 
-        public StuffNode(T i, LinkedListDeque<T>.StuffNode n, LinkedListDeque<T>.StuffNode p) {
+        public StuffNode(T i, StuffNode n, StuffNode p) {
             item = i;
             next = n;
             pre = p;
@@ -30,10 +36,10 @@ public class LinkedListDeque<T> {
     }
 
     public void addFirst(T item) {
-            StuffNode newNode = new StuffNode(item, sentinel.next, sentinel);
-            sentinel.next.pre = newNode;
-            sentinel.next = newNode;
-            size = size + 1;
+        StuffNode newNode = new StuffNode(item, sentinel.next, sentinel);
+        sentinel.next.pre = newNode;
+        sentinel.next = newNode;
+        size = size + 1;
     }
 
     public void addLast(T item) {
@@ -53,8 +59,8 @@ public class LinkedListDeque<T> {
 
     public void printDeque() {
         StuffNode temp = sentinel.next;
-        for (int i = 0; i < size-1; i++) {
-            System.out.print(temp.item+" ");
+        for (int i = 0; i < size - 1; i++) {
+            System.out.print(temp.item + " ");
             temp = temp.next;
         }
         System.out.println(temp.item);
@@ -67,7 +73,7 @@ public class LinkedListDeque<T> {
         T res = sentinel.next.item;
         sentinel.next = sentinel.next.next;
         sentinel.next.pre = sentinel;
-        size = size -1;
+        size = size - 1;
         return res;
     }
 
@@ -78,12 +84,12 @@ public class LinkedListDeque<T> {
         T res = sentinel.pre.item;
         sentinel.pre = sentinel.pre.pre;
         sentinel.pre.next = sentinel;
-        size = size -1;
+        size = size - 1;
         return res;
     }
 
     public T get(int index) {
-        if(size < index) {
+        if (size < index) {
             return null;
         }
         StuffNode temp = sentinel.next;
@@ -106,7 +112,7 @@ public class LinkedListDeque<T> {
     }
 
     public T getRecursive(int index) {
-        if(size <= index) {
+        if (size <= index) {
             return null;
         }
         return getRecursive(sentinel, index);
@@ -116,8 +122,6 @@ public class LinkedListDeque<T> {
         if (i == 0) {
             return node.next.item;
         }
-        return getRecursive(node.next, i-1);
+        return getRecursive(node.next, i - 1);
     }
-
-
 }

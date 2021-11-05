@@ -1,5 +1,7 @@
-import java.util.Objects;
 
+/**
+ *  Deque implemented by array.
+ **/
 public class ArrayDeque<T> {
     private T[] items;
     private int nextFirst;
@@ -8,16 +10,16 @@ public class ArrayDeque<T> {
     private int capacity = 8;
 
     public ArrayDeque() {
-        items = (T[]) new Objects[capacity];
-        nextFirst = 0;
-        nextLast = 0;
+        items = (T[]) new Object[capacity];
+        nextFirst = 4;
+        nextLast = 5;
         size = 0;
     }
 
 
     /** Returns true if deque is empty, false otherwise. **/
     public boolean isEmpty() {
-        return nextFirst == nextLast;
+        return nextFirst + 1 == nextLast;
     }
 
 
@@ -26,17 +28,17 @@ public class ArrayDeque<T> {
     }
 
     /**  Adds an item of type T to the front of the deque. **/
-    public void addFirst (T item) {
+    public void addFirst(T item) {
         if (isFull()) {
             resize((int) (capacity * 1.5));
         }
         items[nextFirst] = item;
-        nextFirst = (nextFirst-1+capacity)%capacity;
+        nextFirst = (nextFirst - 1 + capacity) % capacity;
         size = size + 1;
     }
 
     /** Adds an item of type T to the back of the deque. **/
-    public void addLast (T item) {
+    public void addLast(T item) {
         if (isFull()) {
             resize((int) (capacity * 1.5));
         }
@@ -47,17 +49,17 @@ public class ArrayDeque<T> {
 
     /** Removes and returns the item at the front of the deque. If no such item exists, returns null. */
     public T removeFirst() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
-        int k = (nextFirst+1+capacity)%capacity;
+        int k = (nextFirst + 1 + capacity) % capacity;
         T res = items[k];
         items[k] = null;
 
-        nextFirst = (nextFirst+1+capacity)%capacity;
-        size = size -1;
+        nextFirst = (nextFirst + 1 + capacity) % capacity;
+        size = size - 1;
         if (isLowUseageRate()) {
-            resize((int) (capacity*0.4));
+            resize((int) (capacity * 0.4));
         }
         return res;
     }
@@ -67,13 +69,13 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        int k = (nextLast-1+capacity)%capacity;
+        int k = (nextLast - 1 + capacity) % capacity;
         T res = items[k];
         items[k] = null;
-        nextLast = (nextLast-1+capacity)%capacity;
-        size = size -1;
+        nextLast = (nextLast - 1 + capacity) % capacity;
+        size = size - 1;
         if (isLowUseageRate()) {
-            resize((int) (capacity*0.4));
+            resize((int) (capacity * 0.4));
         }
 
         return res;
@@ -91,12 +93,12 @@ public class ArrayDeque<T> {
         }
         int k = 0;
         if (nextFirst < nextLast) {
-            k = nextFirst+1+index;
+            k = nextFirst + 1 + index;
         }else {
-            if (nextFirst+index+1 < capacity) {
-                k = (nextFirst+index+1);
+            if (nextFirst + index + 1 < capacity) {
+                k = (nextFirst + index + 1);
             }else {
-                k = (nextFirst+1+index+capacity)%capacity;
+                k = (nextFirst + 1 + index + capacity) % capacity;
             }
         }
         return items[k];
@@ -138,21 +140,23 @@ public class ArrayDeque<T> {
     public void printDeque() {
         if (nextFirst < nextLast) {
             for (int i = nextFirst + 1; i < nextLast;i++) {
-                if (i == nextLast -1) {
+                if (i == nextLast - 1) {
                     System.out.println(items[i]);
+                }else {
+                    System.out.print(items[i] + " ");
                 }
-                System.out.println(items[i]+" ");
             }
         }
         else {
-            for (int i = nextFirst + 1; i < capacity;i++) {
-                System.out.println(items[i]+" ");
+            for (int i = nextFirst + 1; i < capacity; i++) {
+                System.out.println(items[i] + " ");
             }
             for (int i = 0;i < nextLast; i++) {
-                if (i == nextLast-1) {
+                if (i == nextLast - 1) {
                     System.out.println(items[i]);
+                }else {
+                    System.out.print(items[i] + " ");
                 }
-                System.out.println(items[i] + " ");
             }
         }
     }
