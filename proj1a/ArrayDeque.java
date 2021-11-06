@@ -108,7 +108,8 @@ public class ArrayDeque<T> {
         T[] newArray = (T[]) new Object[newSize];
         int j = 0;
         if (nextLast == ((nextFirst + 1 + capacity) % capacity )) {
-            for (int i = nextFirst+1;i < capacity; i++, j++) {
+//            int l = (nextFirst + 1 + capacity) % capacity ;
+            for (int i = nextLast;i < capacity; i++, j++) {
                 newArray[j] = items[i];
             }
 
