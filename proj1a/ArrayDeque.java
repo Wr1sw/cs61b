@@ -1,5 +1,6 @@
 /**
  *  Deque implemented by array.
+ * @author wr1sw
  **/
 public class ArrayDeque<T> {
     private T[] items;
@@ -18,16 +19,19 @@ public class ArrayDeque<T> {
 
     /** Returns true if deque is empty, false otherwise. **/
     public boolean isEmpty() {
-//        ((nextFirst + 1 + capacity) % capacity) == nextLast         why am i wrong to do this?
         return size == 0;
     }
 
 
+    /** check whether the deque is full. **/
     private boolean isFull() {
         return size == capacity;
     }
 
-    /**  Adds an item of type T to the front of the deque. **/
+    /**
+     * Adds an item of type T to the front of the deque.
+     * @param item
+     */
     public void addFirst(T item) {
         if (isFull()) {
             resize((int) (capacity * 1.5));
@@ -37,7 +41,10 @@ public class ArrayDeque<T> {
         size = size + 1;
     }
 
-    /** Adds an item of type T to the back of the deque. **/
+    /**
+     * Adds an item of type T to the back of the deque.
+     * @param item
+     */
     public void addLast(T item) {
         if (isFull()) {
             resize((int) (capacity * 1.5));
@@ -47,7 +54,8 @@ public class ArrayDeque<T> {
         size = size + 1;
     }
 
-    /** Removes and returns the item at the front of the deque. If no such item exists, returns null. */
+    /** Removes and returns the item at the front of the deque.
+     * If no such item exists, returns null. */
     public T removeFirst() {
         if (isEmpty()) {
             return null;
@@ -64,7 +72,8 @@ public class ArrayDeque<T> {
         return res;
     }
 
-    /** Removes and returns the item at the back of the deque. If no such item exists, returns null. */
+    /** Removes and returns the item at the back of the deque.
+     * If no such item exists, returns null. */
     public T removeLast() {
         if (isEmpty()) {
             return null;
@@ -86,7 +95,12 @@ public class ArrayDeque<T> {
         return size;
     }
 
-    /** Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth. If no such item exists, returns null. Must not alter the deque! */
+    /**
+     * Gets the item at the given index, where 0 is the front, 1 is the next item,
+     * and so forth.If no such item exists, returns null. Must not alter the deque!
+     * @param index
+     * @return
+     */
     public T get(int index) {
         if (index < 0 || index >= size || isEmpty()) {
             return null;
@@ -94,96 +108,89 @@ public class ArrayDeque<T> {
         int k = 0;
         if (nextFirst < nextLast) {
             k = (nextFirst + 1 + index + capacity) % capacity;
-        }else {
+        } else {
             if (nextFirst + index + 1 < capacity) {
                 k = (nextFirst + index + 1 + capacity) % capacity;
-            }else {
+            } else {
                 k = (nextFirst + 1 + index + capacity) % capacity;
             }
         }
         return items[k];
     }
 
+    /**
+     *
+     * @param newSize
+     */
     private void resize(int newSize) {
         T[] newArray = (T[]) new Object[newSize];
         int j = 0;
-        if (nextLast == ((nextFirst + 1 + capacity) % capacity )) {
-//            int l = (nextFirst + 1 + capacity) % capacity ;
-            for (int i = nextLast;i < capacity; i++, j++) {
+        if (nextLast == ((nextFirst + 1 + capacity) % capacity)) {
+            for (int i = nextLast; i < capacity; i++, j++) {
                 newArray[j] = items[i];
             }
 
-            for (int i = 0;i < nextLast; i++, j++) {
+            for (int i = 0; i < nextLast; i++, j++) {
                 newArray[j] = items[i];
             }
         } else if (nextFirst < nextLast) {
-            for (int i = nextFirst + 1; i < nextLast; i++,j++) {
+            for (int i = nextFirst + 1; i < nextLast; i++, j++) {
                 newArray[j] = items[i];
             }
         } else if (nextFirst > nextLast) {
-            for (int i = nextFirst + 1;i < capacity; i++, j++) {
+            for (int i = nextFirst + 1; i < capacity; i++, j++) {
                 newArray[j] = items[i];
             }
-            for (int i = 0;i < nextLast; i++, j++) {
+            for (int i = 0; i < nextLast; i++, j++) {
                 newArray[j] = items[i];
             }
         }
-        nextFirst = newSize-1;
+        nextFirst = newSize - 1;
         nextLast = size;
         items = newArray;
         capacity = newSize;
     }
 
-    /** For arrays of length 16 or more, your usage factor should always be at least 25% **/
-    private boolean isLowUseageRate () {
-        if (capacity >= 16 &&  ((double)size / capacity) < 0.25) {
+    /** For arrays of length 16 or more,
+     * your usage factor should always be at least 25%.  **/
+    private boolean isLowUseageRate() {
+        if (capacity >= 16 &&  ((double) size / capacity) < 0.25) {
             return true;
         }
         return false;
     }
 
-    /** Prints the items in the deque from first to last, separated by a space. **/
+    /** Prints the items in the deque from first to last,
+     * separated by a space. **/
     public void printDeque() {
 
         if (nextFirst < nextLast) {
-            for (int i = nextFirst + 1; i < nextLast;i++) {
+            for (int i = nextFirst + 1; i < nextLast; i++) {
                 if (i == nextLast - 1) {
                     System.out.println(items[i]);
-                }else {
+                } else {
                     System.out.print(items[i] + " ");
                 }
             }
-        }
-        else {
+        } else {
             for (int i = nextFirst + 1; i < capacity; i++) {
                 System.out.println(items[i] + " ");
             }
-            for (int i = 0;i < nextLast; i++) {
+            for (int i = 0; i < nextLast; i++) {
                 if (i == nextLast - 1) {
                     System.out.println(items[i]);
-                }else {
+                } else {
                     System.out.print(items[i] + " ");
                 }
             }
         }
     }
 
+    /**
+     * get capacity.
+     * @return capacity size
+     */
     private int getCapacity() {
         return capacity;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
