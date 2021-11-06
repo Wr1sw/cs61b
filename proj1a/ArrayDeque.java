@@ -23,7 +23,7 @@ public class ArrayDeque<T> {
     }
 
 
-    public boolean isFull() {
+    private boolean isFull() {
         return size == capacity;
     }
 
@@ -104,7 +104,7 @@ public class ArrayDeque<T> {
         return items[k];
     }
 
-    public void resize(int newSize) {
+    private void resize(int newSize) {
         T[] newArray = (T[]) new Object[newSize];
         int j = 0;
         if (nextLast == ((nextFirst + 1 + capacity) % capacity )) {
@@ -135,7 +135,7 @@ public class ArrayDeque<T> {
     }
 
     /** For arrays of length 16 or more, your usage factor should always be at least 25% **/
-    public boolean isLowUseageRate () {
+    private boolean isLowUseageRate () {
         if (capacity >= 16 &&  ((double)size / capacity) < 0.25) {
             return true;
         }
@@ -168,7 +168,7 @@ public class ArrayDeque<T> {
         }
     }
 
-    public int getCapacity() {
+    private int getCapacity() {
         return capacity;
     }
 

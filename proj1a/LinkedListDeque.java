@@ -10,7 +10,7 @@ public class LinkedListDeque<T> {
     private int size;
 
 
-    public class StuffNode {
+    private class StuffNode {
         private T item;
         private StuffNode pre;
         private StuffNode next;
@@ -28,12 +28,12 @@ public class LinkedListDeque<T> {
         sentinel.pre = sentinel;
         size = 0;
     }
-    public LinkedListDeque(T item) {
-        sentinel = new StuffNode((T) new Object(), null, null);
-        sentinel.next = new StuffNode(item, null, sentinel);
-        sentinel.pre = sentinel.next;
-        size = size + 1;
-    }
+//    public LinkedListDeque(T item) {
+//        sentinel = new StuffNode((T) new Object(), null, null);
+//        sentinel.next = new StuffNode(item, null, sentinel);
+//        sentinel.pre = sentinel.next;
+//        size = size + 1;
+//    }
 
     public void addFirst(T item) {
         StuffNode newNode = new StuffNode(item, sentinel.next, sentinel);
@@ -100,16 +100,16 @@ public class LinkedListDeque<T> {
         return temp.item;
     }
 
-    public LinkedListDeque(LinkedListDeque other) {
-        sentinel = new StuffNode((T) new Object(), null, null);
-        sentinel.pre = sentinel;
-        sentinel.next = sentinel;
-        size = 0;
-
-        for (int i = 0; i < other.size(); i++) {
-            addLast((T) other.get(i));
-        }
-    }
+//    public LinkedListDeque(LinkedListDeque other) {
+//        sentinel = new StuffNode((T) new Object(), null, null);
+//        sentinel.pre = sentinel;
+//        sentinel.next = sentinel;
+//        size = 0;
+//
+//        for (int i = 0; i < other.size(); i++) {
+//            addLast((T) other.get(i));
+//        }
+//    }
 
     public T getRecursive(int index) {
         if (size <= index) {
