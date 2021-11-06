@@ -93,10 +93,10 @@ public class ArrayDeque<T> {
         }
         int k = 0;
         if (nextFirst < nextLast) {
-            k = nextFirst + 1 + index;
+            k = (nextFirst + 1 + index + capacity) % capacity;
         }else {
             if (nextFirst + index + 1 < capacity) {
-                k = (nextFirst + index + 1);
+                k = (nextFirst + index + 1 + capacity) % capacity;
             }else {
                 k = (nextFirst + 1 + index + capacity) % capacity;
             }
@@ -106,24 +106,29 @@ public class ArrayDeque<T> {
 
     public void resize(int newSize) {
         T[] newArray = (T[]) new Object[newSize];
+        int j = 0;
+        if (nextLast == nextFirst + 1) {
+            for (int i = nextFirst;i < capacity; i++, j++) {
+                newArray[j] = items[i];
+            }
 
-        //1
-        if (nextFirst < nextLast) {
-            for (int i = nextFirst+1, j = 0; i <= nextLast-1;i++, j++) {
+            for (int i = 0;i < nextLast-1; i++, j++) {
+                newArray[j] = items[i];
+            }
+        } else if (nextFirst < nextLast) {
+            for (int i = nextFirst + 1; i < nextLast; i++,j++) {
+                newArray[j] = items[i];
+            }
+        } else if (nextFirst > nextLast) {
+            for (int i = nextFirst + 1;i < capacity; i++, j++) {
+                newArray[j] = items[i];
+            }
+            for (int i = 0;i < nextLast; i++, j++) {
                 newArray[j] = items[i];
             }
         }
-        if (nextFirst > nextLast) {
-            int j = 1;
-            for(int i = nextFirst+1;0 < capacity-nextFirst-1;i++, j++) {
-                newArray[j] = items[i];
-            }
-            for(int i = 0; i < nextLast; i++, j++) {
-                newArray[j] = items[i];
-            }
-        }
-        nextFirst = 0;
-        nextLast = size + 1;
+        nextFirst = newSize-1;
+        nextLast = size;
         items = newArray;
         capacity = newSize;
     }
@@ -138,6 +143,7 @@ public class ArrayDeque<T> {
 
     /** Prints the items in the deque from first to last, separated by a space. **/
     public void printDeque() {
+
         if (nextFirst < nextLast) {
             for (int i = nextFirst + 1; i < nextLast;i++) {
                 if (i == nextLast - 1) {
@@ -161,7 +167,9 @@ public class ArrayDeque<T> {
         }
     }
 
-
+    public int getCapacity() {
+        return capacity;
+    }
 
 
 
