@@ -80,7 +80,7 @@ public class ArrayDeque<T> {
         }
         int k = (nextLast - 1 + capacity) % capacity;
         T res = items[k];
-
+//        items[k] = null;
         nextLast = (nextLast - 1 + capacity) % capacity;
         size = size - 1;
         if (isLowUseageRate()) {

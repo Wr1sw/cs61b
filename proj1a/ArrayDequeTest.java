@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /** Performs some basic linked list tests. */
 public class ArrayDequeTest {
 
@@ -37,7 +35,6 @@ public class ArrayDequeTest {
      * && is the "and" operation. */
     public static void addIsEmptySizeTest() {
         System.out.println("Running add/isEmpty/Size test.");
-//		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
         ArrayDeque<String> lld1 = new ArrayDeque<>();
 
         boolean passed = checkEmpty(true, lld1.isEmpty());
@@ -65,8 +62,6 @@ public class ArrayDequeTest {
     public static void addRemoveTest() {
 
         System.out.println("Running add/remove test.");
-
-//        System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
         ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
         // should be empty
         boolean passed = checkEmpty(true, lld1.isEmpty());
@@ -98,34 +93,24 @@ public class ArrayDequeTest {
     }
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
-//        addIsEmptySizeTest();
-//        addRemoveTest();
-//        addGetTest();
-        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
-        ArrayDeque.addLast(0);
-        System.out.println("ArrayDeque.get(0) = " + ArrayDeque.get(0)); // ==> 0
-        ArrayDeque.addFirst(2);
-        ArrayDeque.addLast(3);
-        ArrayDeque.addFirst(4);
-        System.out.println("ArrayDeque.removeLast() = " + ArrayDeque.removeLast()); //    ==> 3
-        ArrayDeque.addLast(6);
-        ArrayDeque.addFirst(7);
-        System.out.println("ArrayDeque.removeFirst() = " + ArrayDeque.removeFirst()); //  ==> 7
-        System.out.println("ArrayDeque.get(2) = " + ArrayDeque.get(2)); //   ==> 0
-        ArrayDeque.addFirst(10);
-        System.out.println("ArrayDeque.removeFirst() = " + ArrayDeque.removeFirst()); //   ==> 10
-        ArrayDeque.addFirst(12);
-        ArrayDeque.addFirst(13);
-        ArrayDeque.addFirst(14);
-        ArrayDeque.addLast(15);
-        ArrayDeque.addLast(16);
-        ArrayDeque.addLast(17);
-        ArrayDeque.addLast(18);
-        System.out.println("ArrayDeque.removeLast() = " + ArrayDeque.removeLast());   // ==> 18
-        System.out.println("ArrayDeque.removeLast() = " + ArrayDeque.removeLast()); //  ==> 17
-        ArrayDeque.addLast(21);
-        System.out.println("ArrayDeque.removeLast() = " + ArrayDeque.removeLast()); //  ==> 21
-        System.out.println("ArrayDeque.get(3) = " + ArrayDeque.get(3));   //   ==> null
-
+        addIsEmptySizeTest();
+        addRemoveTest();
+        addGetTest();
+        ArrayDeque<Integer> arrayDeque = new ArrayDeque<>();
+        arrayDeque.addLast(0);
+        arrayDeque.addFirst(2);
+        arrayDeque.addLast(3);
+        arrayDeque.addFirst(4);
+        arrayDeque.addLast(6);
+        arrayDeque.addFirst(7);
+        arrayDeque.addFirst(10);
+        arrayDeque.addFirst(12);
+        arrayDeque.addFirst(13);
+        arrayDeque.addFirst(14);
+        arrayDeque.addLast(15);
+        arrayDeque.addLast(16);
+        arrayDeque.addLast(17);
+        arrayDeque.addLast(18);
+        arrayDeque.addLast(21);
     }
-} 
+}
