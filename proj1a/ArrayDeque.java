@@ -61,7 +61,6 @@ public class ArrayDeque<T> {
         if (isLowUseageRate()) {
             resize((int) (capacity * 0.4));
         }
-        System.out.println("res = " + res);
         return res;
     }
 
@@ -109,11 +108,11 @@ public class ArrayDeque<T> {
         T[] newArray = (T[]) new Object[newSize];
         int j = 0;
         if (nextLast == ((nextFirst + 1 + capacity) % capacity )) {
-            for (int i = nextFirst;i < capacity; i++, j++) {
+            for (int i = nextFirst+1;i < capacity; i++, j++) {
                 newArray[j] = items[i];
             }
 
-            for (int i = 0;i < nextFirst; i++, j++) {
+            for (int i = 0;i < nextLast; i++, j++) {
                 newArray[j] = items[i];
             }
         } else if (nextFirst < nextLast) {

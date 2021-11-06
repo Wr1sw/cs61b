@@ -98,36 +98,27 @@ public class ArrayDequeTest {
     }
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
-        addIsEmptySizeTest();
-        addRemoveTest();
-        addGetTest();
-        ArrayDeque<String> s1 = new ArrayDeque<>();
-        s1.addLast("1");
-        s1.addFirst("2");
-        s1.addLast("3");
-        s1.addFirst("4");
-        s1.addLast("5");
-        s1.addFirst("6");
-        s1.addLast("7");
-        System.out.println("s1.getCapacity() = " + s1.getCapacity());
-        s1.addLast("8");
-        s1.addLast("9");
-        System.out.println("s1.getCapacity() = " + s1.getCapacity());
-        String t = s1.get(7);
-        System.out.println("s1.get(7) = " + t);
-        s1.addLast("10");
-        String t2 = s1.get(7);
-        System.out.println("s1.get(7) = " + t2);
-        s1.addLast("11");
-        String t3 = s1.get(7);
-        System.out.println("s1.get(7) = " + t3);
-        s1.addFirst("12");
-        String t4 = s1.get(7);
-        System.out.println("s1.get(7) = " + t4);
-        s1.printDeque();
-        String tt = s1.get(7);
-        System.out.println("s1.get(7) = " + tt);
-//        s1.printDeque();
+//        addIsEmptySizeTest();
+//        addRemoveTest();
+//        addGetTest();
+        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
+        ArrayDeque.addLast(0);
+        ArrayDeque.addFirst(1);
+        System.out.println("ArrayDeque.get(0) = " + ArrayDeque.get(0));
+
+        System.out.println("ArrayDeque.removeFirst() = " + ArrayDeque.removeFirst());
+        ArrayDeque.addLast(4);
+        ArrayDeque.addLast(5);
+        ArrayDeque.addLast(6);
+        ArrayDeque.addLast(7);
+        System.out.println("ArrayDeque.get(3) = " + ArrayDeque.get(3));
+        ArrayDeque.addLast(9);
+        System.out.println("ArrayDeque.removeLast() = " + ArrayDeque.removeLast());
+        ArrayDeque.addLast(11);
+        ArrayDeque.addFirst(12);
+        ArrayDeque.addFirst(13);
+        ArrayDeque.addFirst(14);
+        System.out.println("ArrayDeque.removeLast() = " + ArrayDeque.removeLast());
 
 
     }
