@@ -48,7 +48,7 @@ public class ArrayDeque<T> {
     }
 
     /** Removes and returns the item at the front of the deque. If no such item exists, returns null. */
-    public String removeFirst() {
+    public T removeFirst() {
         if (isEmpty()) {
             return null;
         }
@@ -62,11 +62,11 @@ public class ArrayDeque<T> {
             resize((int) (capacity * 0.4));
         }
         System.out.println("res = " + res);
-        return res.toString();
+        return res;
     }
 
     /** Removes and returns the item at the back of the deque. If no such item exists, returns null. */
-    public String removeLast() {
+    public T removeLast() {
         if (isEmpty()) {
             return null;
         }
@@ -79,7 +79,7 @@ public class ArrayDeque<T> {
             resize((int) (capacity * 0.4));
         }
 
-        return res.toString();
+        return res;
     }
 
     /** Returns the number of items in the deque. **/
