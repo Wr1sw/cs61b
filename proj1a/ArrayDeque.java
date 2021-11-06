@@ -48,11 +48,11 @@ public class ArrayDeque<T> {
     }
 
     /** Removes and returns the item at the front of the deque. If no such item exists, returns null. */
-    public T removeFirst() {
+    public String removeFirst() {
         if (isEmpty()) {
             return null;
         }
-        int k = (nextFirst + capacity) % capacity;
+        int k = (nextFirst + 1 + capacity) % capacity;
         T res = items[k];
 
 
@@ -61,11 +61,12 @@ public class ArrayDeque<T> {
         if (isLowUseageRate()) {
             resize((int) (capacity * 0.4));
         }
-        return res;
+        System.out.println("res = " + res);
+        return res.toString();
     }
 
     /** Removes and returns the item at the back of the deque. If no such item exists, returns null. */
-    public T removeLast() {
+    public String removeLast() {
         if (isEmpty()) {
             return null;
         }
@@ -78,7 +79,7 @@ public class ArrayDeque<T> {
             resize((int) (capacity * 0.4));
         }
 
-        return res;
+        return res.toString();
     }
 
     /** Returns the number of items in the deque. **/
@@ -107,12 +108,12 @@ public class ArrayDeque<T> {
     public void resize(int newSize) {
         T[] newArray = (T[]) new Object[newSize];
         int j = 0;
-        if (nextLast == nextFirst + 1) {
+        if (nextLast == ((nextFirst + 1 + capacity) % capacity )) {
             for (int i = nextFirst;i < capacity; i++, j++) {
                 newArray[j] = items[i];
             }
 
-            for (int i = 0;i < nextLast-1; i++, j++) {
+            for (int i = 0;i < nextFirst; i++, j++) {
                 newArray[j] = items[i];
             }
         } else if (nextFirst < nextLast) {
